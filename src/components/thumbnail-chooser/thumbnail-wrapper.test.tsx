@@ -11,13 +11,11 @@ describe("ThumbnailWrapper component", () => {
     const thumbnailWrapperProps: IThumbnailWrapperProps = {
       id: "id",
       Thumbnail,
+      empty: false,
       selected: true,
       setSelectedContainerId: (id: string) => undefined,
       clearContainer: (id: string) => undefined,
-      disabled: false,
-      saved: true,
-      savedBgColor: "#000000",
-      selectedContainerBgColor: "#eeeeee"
+      disabled: false
     };
 
     render(<ThumbnailWrapper {...thumbnailWrapperProps} />);
@@ -35,19 +33,16 @@ describe("ThumbnailWrapper component", () => {
       id: "A",
       Thumbnail,
       selected: true,
+      empty: false,
       setSelectedContainerId: (containerId: string) => undefined,
       clearContainer: (containerId: string) => undefined,
-      disabled: false,
-      saved: false,
-      savedBgColor: "#000000",
-      selectedContainerBgColor: "#eeeeee"
+      disabled: false
     };
 
     render(<ThumbnailWrapper { ...thumbnailWrapperProps } />);
     expect(screen.getAllByTestId("thumbnail-wrapper")).toHaveLength(1);
     expect(screen.getAllByTestId("thumbnail-button")).toHaveLength(1);
     expect(screen.getAllByTestId("thumbnail-title")).toHaveLength(1);
-    expect(screen.getByTestId("thumbnail-title")).not.toHaveClass("saved");
     expect(screen.getAllByTestId("thumbnail")).toHaveLength(1);
   });
 });

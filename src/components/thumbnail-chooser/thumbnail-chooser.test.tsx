@@ -14,12 +14,10 @@ describe("ThumbnailChooser component", () => {
         saved: true,
         data: {}
       }],
-      Thumbnail,
+      RenderingF: Thumbnail,
       selectedItemID: null,
       setSelectedItemId: (id: string) => null,
-      clearSelectedItemId: (id: string) => null,
-      savedBgColor: "#000000",
-      selectedContainerBgColor: "#eeeeee"
+      clearSelectedItemId: (id: string) => null
     };
 
     render(<ThumbnailChooser {...thumbnailChooserProps} />);

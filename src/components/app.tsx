@@ -67,7 +67,6 @@ export const App = () => {
 
   const setSelectedItemId = (id: string) => {
     const found = items.find((i:IThumbnailProps) => i.id === id);
-    console.log(`selecting ${id}`);
     if(found) {
       _setSelectedItemID(id);
     }
@@ -75,11 +74,9 @@ export const App = () => {
 
   // const appendItem = (newItem:IItemSpec) => setItems(items.concat(newItem));
   const clearSelectedItemId = (id: string) => {
-    console.log(`Clear: ${id}`);
     const newItems = items.filter((i:IThumbnailProps) => i.id !== id);
     addBlankItems(newItems, 4);
     updateLabels(newItems);
-    console.log(`length: ${newItems.length}`);
     setItems(newItems);
   };
 

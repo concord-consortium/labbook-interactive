@@ -12,7 +12,7 @@ interface basicButtonProps {
 }
 
 const dummyClickHandler = (target="element") => {
-  return (e: React.MouseEvent<HTMLElement>) => console.log(`clicked ${target}`);
+  return (e: React.MouseEvent<HTMLElement>) => console.error(`clicked ${target}`);
 };
 
 const ButtonBack = styled.div`
@@ -70,7 +70,6 @@ export const ThumbnailChooser: React.FC<IThumbnailChooserProps> = (props) => {
     items, RenderingF, selectedItemID,
     setSelectedItemId, clearSelectedItemId,
   } = props;
-  console.log(selectedItemID);
 
   // Disable unselected thumbnails until user saves the current one.
   return (

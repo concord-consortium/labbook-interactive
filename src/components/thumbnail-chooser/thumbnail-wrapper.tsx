@@ -16,18 +16,17 @@ export interface IThumbnailWrapperProps {
 
 export const ThumbnailWrapper: React.FC<IThumbnailWrapperProps> = (props) => {
   const { id, selected, setSelectedContainerId, disabled, Thumbnail,clearContainer,empty} = props;
-  const saved = !empty;
   const classes = classNames("thumbnail-button", { selected, empty });
   const handleSelect = (e: React.MouseEvent<HTMLElement>) => setSelectedContainerId(id);
   const handleClose = (e: React.MouseEvent<HTMLElement>) => clearContainer(id);
 
   return (
-    <div className="thumbnail-wrapper" onClick={handleSelect} data-testid="thumbnail-wrapper">
+    <div className="thumbnail-wrapper" data-testid="thumbnail-wrapper">
       <button className={classes} onClick={handleSelect} data-testid="thumbnail-button"
                disabled={disabled}>
-        <ThumbnailTitle title={id} empty={empty} saved={saved} />
+        <ThumbnailTitle title={id} empty={empty}/>
         {
-          !selected && empty &&
+          empty &&
           <div className="empty-content">
             <div className="plus-button">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16">
@@ -40,7 +39,7 @@ export const ThumbnailWrapper: React.FC<IThumbnailWrapperProps> = (props) => {
         }
         { !empty &&
           <div className={`container ${!selected ? " disabled" : ""}`}>
-            <Thumbnail id={id} data={{}} saved={saved}/>
+            <Thumbnail id={id} data={{}} empty={empty}/>
           </div>
         }
       </button>

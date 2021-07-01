@@ -6,11 +6,10 @@ import "./thumbnail-title.scss";
 interface IProps {
   title: string;
   empty: boolean;
-  saved: boolean;
 }
 
-export const ThumbnailTitle: React.FC<IProps> = ({ title, empty, saved }) => {
-  const className = classNames("thumbnail-title", { empty, saved });
+export const ThumbnailTitle: React.FC<IProps> = ({ title, empty }) => {
+  const className = classNames("thumbnail-title", {empty});
   return (
     <div className={className} data-testid="thumbnail-title">
       {title}

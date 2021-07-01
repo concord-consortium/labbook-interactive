@@ -1,42 +1,72 @@
 import React, {useState} from "react";
 import { ThumbnailChooser, IThumbnailChooserProps } from "./thumbnail-chooser/thumbnail-chooser";
-import { Thumbnail } from "./thumbnail-chooser/thumbnail";
+import { Thumbnail, IThumbnailProps } from "./thumbnail-chooser/thumbnail";
 import "./app.scss";
 
-interface IItemSpec {
-  id: string;
-  saved: boolean;
-  label: string;
-  data: any;
-}
 
-const initialItems = [
+const initialItems:Array<IThumbnailProps> = [
   {
-    id: "a",
-    saved: true,
+    id: "A",
+    empty: false,
     label: "apple",
+    content: "apple",
     data: {}
   },
   {
-    id: "b",
-    saved: true,
-    label: "apple",
+    id: "B",
+    empty: false,
+    label: "banana",
+    content: "Banana",
     data: {}
   },
   {
-    id: "c",
-    saved: true,
-    label: "apple",
+    id: "C",
+    empty: false,
+    label: "cherry",
+    content: "Cherry",
+    data: {}
+  },
+  {
+    id: "D",
+    empty: false,
+    label: "dog",
+    content: "Dog",
+    data: {}
+  },
+  {
+    id: "E",
+    empty: false,
+    label: "egg",
+    content: "Egg",
     data: {}
   }
 ];
+
+const displayItems = 4;
+const emptyItem = {id: "", empty: true, label: "", data: {}};
+const numberToAlpha = (value:number) => (value + 10).toString(36).toUpperCase();
+
+// Add 'empty' items:
+const addBlankItems = (items:Array<IThumbnailProps>, minCount:number) => {
+    const numBlanks = Math.max(1, minCount - items.length);
+    for (let c = 0; c < numBlanks; c++) {
+      items.push({... emptyItem});
+    }
+};
+
+const updateLabels = (items:Array<IThumbnailProps>) => {
+  items.forEach( (i,idx) => i.id=numberToAlpha(idx));
+};
+
+addBlankItems(initialItems, displayItems);
+updateLabels(initialItems);
 
 export const App = () => {
   const[items, setItems] = useState(initialItems);
   const[selectedItemID, _setSelectedItemID] = useState("nothingxxx");
 
   const setSelectedItemId = (id: string) => {
-    const found = items.find((i:IItemSpec) => i.id === id);
+    const found = items.find((i:IThumbnailProps) => i.id === id);
     console.log(`selecting ${id}`);
     if(found) {
       _setSelectedItemID(id);
@@ -46,8 +76,11 @@ export const App = () => {
   // const appendItem = (newItem:IItemSpec) => setItems(items.concat(newItem));
   const clearSelectedItemId = (id: string) => {
     console.log(`Clear: ${id}`);
-    const filtered = items.filter((i:IItemSpec) => i.id !== id);
-    setItems(filtered);
+    const newItems = items.filter((i:IThumbnailProps) => i.id !== id);
+    addBlankItems(newItems, 4);
+    updateLabels(newItems);
+    console.log(`length: ${newItems.length}`);
+    setItems(newItems);
   };
 
   const thumbnailChooserProps: IThumbnailChooserProps = {

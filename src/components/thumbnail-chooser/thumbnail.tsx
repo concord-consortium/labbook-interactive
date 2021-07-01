@@ -5,15 +5,16 @@ export type ThumbnailModelID = string;
 
 export interface IThumbnailProps {
   id: ThumbnailModelID;
-  saved: boolean;
+  empty: boolean;
   label?: string;
+  content?: React.FC|string;
   data: any;  // TODO: This is fine for now, type it later.
 }
 
 export const Thumbnail: React.FC<IThumbnailProps> = (props:IThumbnailProps) => {
   return (
     <div className="thumbnail" data-testid="thumbnail">
-      This is some text.
+      {props.content}
     </div>
   );
 };

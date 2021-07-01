@@ -71,30 +71,21 @@ export const ThumbnailChooser: React.FC<IThumbnailChooserProps> = (props) => {
     setSelectedItemId, clearSelectedItemId,
   } = props;
   console.log(selectedItemID);
-  const minItems = 4;
-  const numBlanks = Math.min(1, minItems - items.length);
-  const blanks = new Array<IThumbnailProps>(numBlanks).map( i => {
-    return {
-      id: "_",
-      saved: false,
-      label: "",
-      data: {}
-    };
-  });
-  const itemList = items.concat(blanks);
+
   // Disable unselected thumbnails until user saves the current one.
   return (
     <div className="thumbnail-chooser" data-testid="thumbnail-chooser">
       <PrevButton enabled={true} onClick={() => dummyClickHandler()} />
       <div className="thumbnail-chooser-list">
-        {itemList.map(item => {
-          const {id} = item;
-          const selected = selectedItemID === selectedItemID;
+        {items.map(item => {
+          const {id, empty} = item;
+          console.log(id);
+          const selected = id === selectedItemID;
           return (
-            <ThumbnailWrapper id={id} Thumbnail={RenderingF} key={id}
+            <ThumbnailWrapper id={id} Thumbnail={() => RenderingF(item)} key={id}
               selected={selected} setSelectedContainerId={setSelectedItemId}
               clearContainer={clearSelectedItemId}
-              empty={id === "_"}
+              empty={empty}
               disabled={false} />
           );
         })}

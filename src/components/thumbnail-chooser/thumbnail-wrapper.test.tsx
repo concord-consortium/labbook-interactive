@@ -22,7 +22,6 @@ describe("ThumbnailWrapper component", () => {
     expect(screen.getAllByTestId("thumbnail-wrapper")).toHaveLength(1);
     expect(screen.getAllByTestId("thumbnail-button")).toHaveLength(1);
     expect(screen.getAllByTestId("thumbnail-title")).toHaveLength(1);
-    expect(screen.getByTestId("thumbnail-title")).toHaveClass("saved");
     expect(screen.getAllByTestId("thumbnail")).toHaveLength(1);
   });
 

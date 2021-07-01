@@ -8,7 +8,8 @@ describe("Thumbnail component", () => {
   it("renders empty thumbnail", () => {
     const props:IThumbnailProps = {
       id: "one",
-      saved: true,
+      empty: true,
+      content: "This is some text",
       data: {}
     };
     render(<Thumbnail {...props} />);

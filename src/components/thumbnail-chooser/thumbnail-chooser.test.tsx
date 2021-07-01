@@ -11,7 +11,7 @@ describe("ThumbnailChooser component", () => {
     const thumbnailChooserProps: IThumbnailChooserProps = {
       items: [{
         id: "a",
-        saved: true,
+        empty: false,
         data: {}
       }],
       RenderingF: Thumbnail,

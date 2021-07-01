@@ -4,20 +4,26 @@
   position: relative;
   height: 94px;
   margin: 5px;
-
+  font-family: Lato;
+  button {
+    font-family: Lato;
+    color: var(--cc-charcoal);
+  }
   .thumbnail-button {
     padding: 0;
-    background-color: white;
     border-radius: 8px;
-    border: solid 1px #000;
+    border: solid 1px var(--cc-charcoal);
     margin: 1px;
-    width: 90px;
-    height: 90px;
-    box-sizing: content-box;
+    width: 89px;
+    height: 88px;
+    background-color: white;
+    box-sizing: border-box;
     position: relative;
     transition: background-color .25s;
     overflow: hidden;
-
+    svg {
+      stroke: var(--cc-charcoal);
+    }
     &:not(:disabled) {
       cursor: pointer;
       &:hover {
@@ -29,14 +35,20 @@
       opacity: 0.35;
     }
 
-    &.empty {
-      border: dashed 1px $gray-dark;
-      svg {
-        stroke: $gray-dark;
-      }
+    // &.empty {
+    //   border: dashed 1px $gray-dark;
+    //   svg {
+    //     stroke: var(--cc-charcoal);
+    //   }
+    // }
+    .empty-content {
+      font-size: 16px;
     }
 
     &.selected {
+      width: 89px;
+      height: 88px;
+      border-radius: 8px;
       border: solid 3px var(--cc-teal);
     }
   }

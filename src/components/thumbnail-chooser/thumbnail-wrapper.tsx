@@ -38,20 +38,21 @@ export const ThumbnailWrapper: React.FC<IThumbnailWrapperProps> = (props) => {
             <div className="empty-label">{t("THUMBNAIL_CHOOSER.NEW_MODEL")}</div>
           </div>
         }
+        { !empty &&
+          <div className={`container ${!selected ? " disabled" : ""}`}>
+            <Thumbnail id={id} data={{}} saved={saved}/>
+          </div>
+        }
       </button>
-      { !empty &&
-        <div className={`container ${!selected ? " disabled" : ""}`}>
-          <Thumbnail id={id} data={{}} saved={saved}/>
-        </div> }
-      {
-        selected &&
-        <button className="close" onClick={handleClose} disabled={disabled}>
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12" width="12" height="12">
-            <line x1="0" y1="0" x2="12" y2="12" strokeWidth="2.5"/>
-            <line x1="12" y1="0" x2="0" y2="12" strokeWidth="2.5"/>
-          </svg>
-        </button>
-      }
+        {
+          selected &&
+          <button className="close" onClick={handleClose} disabled={disabled}>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12" width="12" height="12">
+              <line x1="0" y1="0" x2="12" y2="12" strokeWidth="2.5"/>
+              <line x1="12" y1="0" x2="0" y2="12" strokeWidth="2.5"/>
+            </svg>
+          </button>
+        }
     </div>
   );
 };

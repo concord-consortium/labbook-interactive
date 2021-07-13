@@ -11,10 +11,6 @@ interface basicButtonProps {
   enabled: boolean;
 }
 
-const dummyClickHandler = (target="element") => {
-  return (e: React.MouseEvent<HTMLElement>) => console.error(`clicked ${target}`);
-};
-
 const ButtonBack = styled.button`
   width: 44px;
   height: 44px;
@@ -98,15 +94,20 @@ export const ThumbnailChooser: React.FC<IThumbnailChooserProps> = (props) => {
           console.log(id);
           const selected = id === selectedItemID;
           return (
-            <ThumbnailWrapper id={id} Thumbnail={() => RenderingF(item)} key={id}
-              selected={selected} setSelectedContainerId={setSelectedItemId}
+            <ThumbnailWrapper
+              id={id} Thumbnail={() => RenderingF(item)} key={id}
+              selected={selected}
+              setSelectedContainerId={setSelectedItemId}
               clearContainer={clearSelectedItemId}
               empty={empty}
               disabled={false} />
           );
         })}
       </div>
-      <NextButton enabled={items.length - offset > maxDisplayItems} onClick={() => setOffset(offset +1)}/>
+
+      <NextButton
+        enabled={items.length - offset > maxDisplayItems}
+        onClick={() => setOffset(offset +1)}/>
     </div>
   );
 };

@@ -43,14 +43,23 @@ const initialItems:Array<IThumbnailProps> = [
 ];
 
 const displayItems = 4;
-const emptyItem = {id: "", empty: true, label: "", data: {}};
+const emptyItem = {
+  id: "",
+  empty: true,
+  label: "",
+  data: {}
+};
+
 const numberToAlpha = (value:number) => (value + 10).toString(36).toUpperCase();
+const maxItems = 12;
 
 // Add 'empty' items:
 const addBlankItems = (items:Array<IThumbnailProps>, minCount:number) => {
     const numBlanks = Math.max(1, minCount - items.length);
-    for (let c = 0; c < numBlanks; c++) {
-      items.push({... emptyItem});
+    if(items.length < maxItems) {
+      for (let c = 0; c < numBlanks; c++) {
+        items.push({... emptyItem});
+      }
     }
 };
 
@@ -63,7 +72,7 @@ updateLabels(initialItems);
 
 export const App = () => {
   const[items, setItems] = useState(initialItems);
-  const[selectedItemID, _setSelectedItemID] = useState("nothingxxx");
+  const[selectedItemID, _setSelectedItemID] = useState("nothing");
 
   const setSelectedItemId = (id: string) => {
     const found = items.find((i:IThumbnailProps) => i.id === id);
@@ -72,9 +81,11 @@ export const App = () => {
     }
   };
 
+
   // const appendItem = (newItem:IItemSpec) => setItems(items.concat(newItem));
   const clearSelectedItemId = (id: string) => {
-    const newItems = items.filter((i:IThumbnailProps) => i.id !== id);
+    const newItems = items.filter((i:IThumbnailProps) => i.id !== id)
+                          .filter((i:IThumbnailProps) => i.empty === false);
     addBlankItems(newItems, 4);
     updateLabels(newItems);
     setItems(newItems);

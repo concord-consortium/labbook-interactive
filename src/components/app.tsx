@@ -3,14 +3,17 @@ import { ThumbnailChooser, IThumbnailChooserProps } from "./thumbnail-chooser/th
 import { Thumbnail, IThumbnailProps } from "./thumbnail-chooser/thumbnail";
 import { PreviewPanel } from "./preview-panel";
 import { UploadButton } from "./buttons";
-
+import { CommentField } from "./comment-field";
+import SnapShotIcon from "../assets/snapshot-image-icon.svg";
+import UploadIcon from "../assets/upload-image-icon.svg";
 import styled from "styled-components";
 import "./app.scss";
 
 const BackgroundDiv = styled.div `
   width: 514px;
-  height: 505px;
   margin: 0px;
+  display: flex;
+  flex-direction: column;
   padding: 0px;
   border: solid 1px var(--cc-charcoal);
   background-color: var(--white);
@@ -111,12 +114,39 @@ export const App = () => {
     clearSelectedItemId,
   };
   const selectedItem = items.find(i => i.id === selectedItemID);
+
+  const Buttons = styled.div`
+    display: flex;
+    flex-direction: column;
+  `;
+
+  const BottomContent = styled.div`
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    width: 100%;
+  `;
+
   return (
     <div className="app">
       <BackgroundDiv>
         <ThumbnailChooser {...thumbnailChooserProps} />
         <PreviewPanel item={selectedItem} />
-        {/* <UploadButton label="Take Snapshot" /> */}
+        <BottomContent>
+          <Buttons>
+            <UploadButton>
+              <UploadIcon />
+              Upload Image
+            </UploadButton>
+
+            <UploadButton>
+              <SnapShotIcon />
+              Take Snapshot
+            </UploadButton>
+          </Buttons>
+          <CommentField item={selectedItem}/>
+        </BottomContent>
+
       </BackgroundDiv>
     </div>
   );

@@ -1,11 +1,10 @@
 import React, {useState} from "react";
 import { ThumbnailWrapper } from "./thumbnail-wrapper";
 import {IThumbnailProps, ThumbnailModelID} from "./thumbnail";
-import "./thumbnail-chooser.scss";
 import NextButtonIcon from "../../assets/arrow-next-icon.svg";
 import PrevButtonIcon from "../../assets/arrow-previous-icon.svg";
 import styled from "styled-components";
-
+import "./thumbnail-chooser.scss";
 interface basicButtonProps {
   onClick?: (e: React.MouseEvent<HTMLElement>) => void;
   enabled: boolean;

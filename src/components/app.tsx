@@ -2,14 +2,16 @@ import React, {useState} from "react";
 import { ThumbnailChooser, IThumbnailChooserProps } from "./thumbnail-chooser/thumbnail-chooser";
 import { Thumbnail, IThumbnailProps } from "./thumbnail-chooser/thumbnail";
 import { PreviewPanel } from "./preview-panel";
+import { UploadButton } from "./buttons";
+
 import styled from "styled-components";
 import "./app.scss";
 
 const BackgroundDiv = styled.div `
   width: 514px;
   height: 505px;
-  margin: 10px 0 0 25px;
-  padding: 0 0 10px;
+  margin: 0px;
+  padding: 0px;
   border: solid 1px var(--cc-charcoal);
   background-color: var(--white);
 `;
@@ -114,6 +116,7 @@ export const App = () => {
       <BackgroundDiv>
         <ThumbnailChooser {...thumbnailChooserProps} />
         <PreviewPanel item={selectedItem} />
+        {/* <UploadButton label="Take Snapshot" /> */}
       </BackgroundDiv>
     </div>
   );

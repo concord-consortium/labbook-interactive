@@ -7,6 +7,7 @@ const Container = styled.div `
   width: 455px;
   height: 300px;
   padding: 0px;
+  margin: 10px;
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
@@ -21,6 +22,7 @@ const PreviewPanelDiv = styled.div `
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: #eaeaea;
 `;
 
 
@@ -32,6 +34,7 @@ const ToolBar = styled.div `
   border-radius: 8px 0px 0px 8px;
   border: solid 1.5px var(--cc-charcoal);
   border-right: none;
+  background-color: var(--cc-teal-light-7);
 `;
 
 const ItemViewDiv = styled.div `

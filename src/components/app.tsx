@@ -1,8 +1,18 @@
 import React, {useState} from "react";
 import { ThumbnailChooser, IThumbnailChooserProps } from "./thumbnail-chooser/thumbnail-chooser";
 import { Thumbnail, IThumbnailProps } from "./thumbnail-chooser/thumbnail";
+import { PreviewPanel } from "./preview-panel";
+import styled from "styled-components";
 import "./app.scss";
 
+const BackgroundDiv = styled.div `
+  width: 514px;
+  height: 505px;
+  margin: 10px 0 0 25px;
+  padding: 0 0 10px;
+  border: solid 1px var(--cc-charcoal);
+  background-color: var(--white);
+`;
 
 const initialItems:Array<IThumbnailProps> = [
   {
@@ -98,9 +108,13 @@ export const App = () => {
     setSelectedItemId,
     clearSelectedItemId,
   };
+  const selectedItem = items.find(i => i.id === selectedItemID);
   return (
     <div className="app">
-      <ThumbnailChooser {...thumbnailChooserProps} />
+      <BackgroundDiv>
+        <ThumbnailChooser {...thumbnailChooserProps} />
+        <PreviewPanel item={selectedItem} />
+      </BackgroundDiv>
     </div>
   );
 };

@@ -38,7 +38,7 @@ export const CommentField: React.FC<ICommentFieldProps> = (props) => {
 
   return (
       <Wrapper>
-        <ThumbnailTitle title={item?.id} empty={false}/>
+        <ThumbnailTitle title={item?.id} empty={disabled}/>
         <StyledTextArea disabled={disabled} placeholder={placeholder}>
         </StyledTextArea>
       </Wrapper>

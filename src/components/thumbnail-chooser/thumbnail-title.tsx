@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
+import classNames from "classnames";
 
-
-const LabelChit = styled.div`
+const TitleDiv = styled.div`
   position: absolute;
   top: 1px;
   left: 1px;
@@ -25,6 +25,9 @@ const LabelChit = styled.div`
   font-weight: bold;
   text-align: center;
   color: var(--cc-charcoal);
+  &.empty {
+    display: none;
+  }
 `;
 
 interface IProps {
@@ -33,9 +36,11 @@ interface IProps {
 }
 
 export const ThumbnailTitle: React.FC<IProps> = ({ title, empty }) => {
+  const className = classNames("title", {empty});
   return (
-    <LabelChit data-testid="thumbnail-title">
-      {title}
-    </LabelChit>
+    <TitleDiv className={className} data-testid="thumbnail-title">
+        {title}
+    </TitleDiv>
   );
+
 };

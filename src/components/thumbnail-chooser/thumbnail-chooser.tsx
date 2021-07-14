@@ -89,7 +89,6 @@ export const ThumbnailChooser: React.FC<IThumbnailChooserProps> = (props) => {
           if(index < effectiveOffset) { return null; }
           if(index - effectiveOffset >= maxDisplayItems) { return null; }
           const {id, empty} = item;
-          console.log(id);
           const selected = id === selectedItemID;
           return (
             <ThumbnailWrapper

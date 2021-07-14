@@ -16,8 +16,8 @@ describe("ThumbnailChooser component", () => {
       }],
       RenderingF: Thumbnail,
       selectedItemID: null,
-      setSelectedItemId: (id: string) => null,
-      clearSelectedItemId: (id: string) => null
+      setSelectedItemID: (id: string) => null,
+      clearSelectedItemID: (id: string) => null
     };
 
     render(<ThumbnailChooser {...thumbnailChooserProps} />);

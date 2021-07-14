@@ -65,29 +65,29 @@ export interface IThumbnailChooserProps {
   items: Array<IThumbnailProps>;
   RenderingF: React.FC<IThumbnailProps>;
   selectedItemID: ThumbnailModelID | null;
-  setSelectedItemId: (itemId: ThumbnailModelID) => void;
-  clearSelectedItemId: (itemId: ThumbnailModelID) => void;
+  setSelectedItemID: (itemId: ThumbnailModelID) => void;
+  clearSelectedItemID: (itemId: ThumbnailModelID) => void;
   disableUnselectedThumbnails?: boolean;
 }
 
 export const ThumbnailChooser: React.FC<IThumbnailChooserProps> = (props) => {
   const [offset, setOffset] = useState(0);
-  const maxDisplayItems = 4;
 
   const {
     items, RenderingF, selectedItemID,
-    setSelectedItemId, clearSelectedItemId,
+    setSelectedItemID: setSelectedItemId, clearSelectedItemID: clearSelectedItemId,
   } = props;
-
+  const maxDisplayItems = 4;
+  const effectiveOffset = Math.min(offset, items.length - maxDisplayItems);
 
   return (
     <div className="thumbnail-chooser" data-testid="thumbnail-chooser">
-      <PrevButton enabled={offset > 0} onClick={() => setOffset(offset -1)} />
+      <PrevButton enabled={effectiveOffset > 0} onClick={() => setOffset(effectiveOffset -1)} />
       <div className="thumbnail-chooser-list">
         {items.map( (item, index) => {
           // Only display a subset of items
-          if(index < offset) { return null; }
-          if(index - offset >= maxDisplayItems) { return null; }
+          if(index < effectiveOffset) { return null; }
+          if(index - effectiveOffset >= maxDisplayItems) { return null; }
           const {id, empty} = item;
           console.log(id);
           const selected = id === selectedItemID;
@@ -104,8 +104,8 @@ export const ThumbnailChooser: React.FC<IThumbnailChooserProps> = (props) => {
       </div>
 
       <NextButton
-        enabled={items.length - offset > maxDisplayItems}
-        onClick={() => setOffset(offset +1)}/>
+        enabled={items.length - effectiveOffset > maxDisplayItems}
+        onClick={() => setOffset(effectiveOffset +1)}/>
     </div>
   );
 };

@@ -4,8 +4,8 @@ import classNames from "classnames";
 
 const TitleDiv = styled.div`
   position: absolute;
-  top: 1px;
-  left: 1px;
+  top: 0px;
+  left: 0px;
   display: flex;
   justify-content: center;
   align-items: center;

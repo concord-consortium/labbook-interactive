@@ -89,7 +89,7 @@ export const App = () => {
   const[items, setItems] = useState(initialItems);
   const[selectedItemID, _setSelectedItemID] = useState("nothing");
 
-  const setSelectedItemId = (id: string) => {
+  const setSelectedItemID = (id: string) => {
     const found = items.find((i:IThumbnailProps) => i.id === id);
     if(found) {
       _setSelectedItemID(id);
@@ -98,10 +98,11 @@ export const App = () => {
 
 
   // const appendItem = (newItem:IItemSpec) => setItems(items.concat(newItem));
-  const clearSelectedItemId = (id: string) => {
+  const clearSelectedItemID = (id: string) => {
     const newItems = items.filter((i:IThumbnailProps) => i.id !== id)
                           .filter((i:IThumbnailProps) => i.empty === false);
     addBlankItems(newItems, 4);
+    _setSelectedItemID("nothing");
     updateLabels(newItems);
     setItems(newItems);
   };
@@ -110,8 +111,8 @@ export const App = () => {
     items,
     RenderingF: Thumbnail,
     selectedItemID,
-    setSelectedItemId,
-    clearSelectedItemId,
+    setSelectedItemID,
+    clearSelectedItemID,
   };
   const selectedItem = items.find(i => i.id === selectedItemID);
 

@@ -31,15 +31,15 @@ export interface ICommentFieldProps {
 
 export const CommentField: React.FC<ICommentFieldProps> = (props) => {
   const {item} = props;
-  const disabled = !item;
-  const placeholder = disabled
+  const empty = item ? item.empty : true;
+  const placeholder = empty
     ? ""
     : "Add comment … "; // TODO: I18n
 
   return (
       <Wrapper>
-        <ThumbnailTitle title={item?.id} empty={disabled}/>
-        <StyledTextArea disabled={disabled} placeholder={placeholder}>
+        <ThumbnailTitle title={item?.id} empty={empty}/>
+        <StyledTextArea disabled={empty} placeholder={placeholder}>
         </StyledTextArea>
       </Wrapper>
   );

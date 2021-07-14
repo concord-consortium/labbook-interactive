@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import {IThumbnailProps } from "./thumbnail-chooser/thumbnail";
-
+import { ThumbnailTitle } from "./thumbnail-chooser/thumbnail-title";
 
 const Container = styled.div `
   padding: 0px;
@@ -12,6 +12,7 @@ const Container = styled.div `
 `;
 
 const PreviewPanelDiv = styled.div `
+  position: relative;
   width: 451px;
   height: 300px;
   padding: 0px;
@@ -45,10 +46,12 @@ export interface IPreviewPanelProps {
 
 export const PreviewPanel: React.FC<IPreviewPanelProps> = (props) => {
   const {item} = props;
+  const empty = item ? item.empty : true;
   return(
     <Container>
       <ToolBar/>
       <PreviewPanelDiv>
+        <ThumbnailTitle empty={empty} title={item?.id}/>
         <ItemViewDiv>
           {item?.content}
         </ItemViewDiv>

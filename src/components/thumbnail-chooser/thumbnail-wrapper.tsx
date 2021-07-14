@@ -18,7 +18,9 @@ export const ThumbnailWrapper: React.FC<IThumbnailWrapperProps> = (props) => {
   const { id, selected, setSelectedContainerId, disabled, Thumbnail,clearContainer,empty} = props;
   const classes = classNames("thumbnail-button", { selected, empty });
   const handleSelect = (e: React.MouseEvent<HTMLElement>) => setSelectedContainerId(id);
-  const handleClose = (e: React.MouseEvent<HTMLElement>) => clearContainer(id);
+  const handleClose = empty
+    ? () => null
+    : (e: React.MouseEvent<HTMLElement>) => clearContainer(id);
 
   return (
     <div className="thumbnail-wrapper" data-testid="thumbnail-wrapper">
@@ -44,7 +46,7 @@ export const ThumbnailWrapper: React.FC<IThumbnailWrapperProps> = (props) => {
         }
       </button>
         {
-          selected &&
+          selected && !empty &&
           <button className="close" onClick={handleClose} disabled={disabled}>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12" width="12" height="12">
               <line x1="0" y1="0" x2="12" y2="12" strokeWidth="2.5"/>

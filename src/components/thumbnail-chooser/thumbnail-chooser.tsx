@@ -73,7 +73,6 @@ export interface IThumbnailChooserProps {
 export const ThumbnailChooser: React.FC<IThumbnailChooserProps> = (props) => {
   const [offset, setOffset] = useState(0);
   const maxDisplayItems = 4;
-  const maxItems = 12;
 
   const {
     items, RenderingF, selectedItemID,

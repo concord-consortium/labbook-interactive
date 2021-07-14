@@ -4,8 +4,6 @@ import {IThumbnailProps } from "./thumbnail-chooser/thumbnail";
 
 
 const Container = styled.div `
-  width: 455px;
-  height: 300px;
   padding: 0px;
   margin: 10px;
   display: flex;

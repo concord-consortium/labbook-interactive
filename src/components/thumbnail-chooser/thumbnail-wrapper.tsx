@@ -1,31 +1,35 @@
 import React from "react";
 import classNames from "classnames";
 import { ThumbnailTitle } from "./thumbnail-title";
-import { IThumbnailProps } from "./thumbnail";
+import { IThumbnailProps, Thumbnail } from "./thumbnail";
 import "./thumbnail-wrapper.scss";
 import t from "../../utils/translation/translate";
+
 export interface IThumbnailWrapperProps {
-  id: string;
   selected: boolean;
   setSelectedContainerId: (id:string) => void;
   clearContainer: (id:string) => void;
-  disabled: boolean;
-  empty: boolean;
-  Thumbnail: React.FC<IThumbnailProps>
+  content: IThumbnailProps;
 }
 
 export const ThumbnailWrapper: React.FC<IThumbnailWrapperProps> = (props) => {
-  const { id, selected, setSelectedContainerId, disabled, Thumbnail,clearContainer,empty} = props;
+  const { selected, setSelectedContainerId, clearContainer, content} = props;
+  const { onClick, empty, id } = content;
   const classes = classNames("thumbnail-button", { selected, empty });
-  const handleSelect = (e: React.MouseEvent<HTMLElement>) => setSelectedContainerId(id);
   const handleClose = empty
     ? () => null
     : (e: React.MouseEvent<HTMLElement>) => clearContainer(id);
 
+  const clickHandler = () => {
+    setSelectedContainerId(id);
+    onClick?.();
+  };
   return (
     <div className="thumbnail-wrapper" data-testid="thumbnail-wrapper">
-      <button className={classes} onClick={handleSelect} data-testid="thumbnail-button"
-               disabled={disabled}>
+      <button className={classes}
+              onClick={clickHandler}
+              data-testid="thumbnail-button"
+      >
         <ThumbnailTitle title={id} empty={empty}/>
         {
           empty &&
@@ -41,13 +45,13 @@ export const ThumbnailWrapper: React.FC<IThumbnailWrapperProps> = (props) => {
         }
         { !empty &&
           <div className={`container ${!selected ? " disabled" : ""}`}>
-            <Thumbnail id={id} data={{}} empty={empty}/>
+            <Thumbnail {...content}/>
           </div>
         }
       </button>
         {
           selected && !empty &&
-          <button className="close" onClick={handleClose} disabled={disabled}>
+          <button className="close" onClick={handleClose}>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12" width="12" height="12">
               <line x1="0" y1="0" x2="12" y2="12" strokeWidth="2.5"/>
               <line x1="12" y1="0" x2="0" y2="12" strokeWidth="2.5"/>

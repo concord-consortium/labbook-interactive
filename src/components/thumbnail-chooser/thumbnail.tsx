@@ -7,14 +7,16 @@ export interface IThumbnailProps {
   id: ThumbnailModelID;
   empty: boolean;
   label?: string;
-  content?: React.FC|string;
+  thumbContent?: React.FC|string;
   data: any;  // TODO: This is fine for now, type it later.
+  onClick?: ()=> void;
 }
 
 export const Thumbnail: React.FC<IThumbnailProps> = (props:IThumbnailProps) => {
+  const {thumbContent} = props;
   return (
     <div className="thumbnail" data-testid="thumbnail">
-      {props.content}
+      {thumbContent}
     </div>
   );
 };

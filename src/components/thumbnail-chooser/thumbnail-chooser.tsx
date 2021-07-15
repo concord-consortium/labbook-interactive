@@ -74,7 +74,7 @@ export const ThumbnailChooser: React.FC<IThumbnailChooserProps> = (props) => {
   const [offset, setOffset] = useState(0);
 
   const {
-    items, RenderingF, selectedItemID,
+    items, selectedItemID,
     setSelectedItemID: setSelectedItemId, clearSelectedItemID: clearSelectedItemId,
   } = props;
   const maxDisplayItems = 4;
@@ -88,16 +88,16 @@ export const ThumbnailChooser: React.FC<IThumbnailChooserProps> = (props) => {
           // Only display a subset of items
           if(index < effectiveOffset) { return null; }
           if(index - effectiveOffset >= maxDisplayItems) { return null; }
-          const {id, empty} = item;
+          const {id} = item;
           const selected = id === selectedItemID;
           return (
             <ThumbnailWrapper
-              id={id} Thumbnail={() => RenderingF(item)} key={id}
+              key={item.id}
               selected={selected}
+              content={item}
               setSelectedContainerId={setSelectedItemId}
               clearContainer={clearSelectedItemId}
-              empty={empty}
-              disabled={false} />
+            />
           );
         })}
       </div>

@@ -9,7 +9,7 @@ describe("Thumbnail component", () => {
     const props:IThumbnailProps = {
       id: "one",
       empty: true,
-      content: "This is some text",
+      thumbContent: "This is some text",
       data: {}
     };
     render(<Thumbnail {...props} />);

@@ -53,7 +53,7 @@ export const PreviewPanel: React.FC<IPreviewPanelProps> = (props) => {
       <PreviewPanelDiv>
         <ThumbnailTitle empty={empty} title={item?.id}/>
         <ItemViewDiv>
-          {item?.content}
+          {item?.thumbContent}
         </ItemViewDiv>
       </PreviewPanelDiv>
     </Container>

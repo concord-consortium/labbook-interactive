@@ -1,7 +1,5 @@
-import React from "react";
-import styled from "styled-components";
 
-const ButtonBack = styled.div `
+.button-back {
   width: 152px;
   height: 34px;
   margin: 5px 10px;
@@ -21,15 +19,5 @@ const ButtonBack = styled.div `
   svg {
     margin-right: 5px;
   }
-`;
+}
 
-export interface IUploadButtonProps {label?:string}
-
-export const UploadButton: React.FC<IUploadButtonProps> = (props) => {
-  const {children} = props;
-  return (
-    <ButtonBack>
-      {children}
-    </ButtonBack>
-  );
-};

@@ -1,8 +1,8 @@
 import React, {useState} from "react";
 import { ThumbnailChooser, IThumbnailChooserProps } from "./thumbnail-chooser/thumbnail-chooser";
-import { Thumbnail, IThumbnailProps, ThumbnailModelID } from "./thumbnail-chooser/thumbnail";
+import { Thumbnail, IThumbnailProps } from "./thumbnail-chooser/thumbnail";
 import { PreviewPanel } from "./preview-panel";
-import { UploadButton } from "./buttons";
+import { UploadButton } from "./uploadButton";
 import { CommentField } from "./comment-field";
 import SnapShotIcon from "../assets/snapshot-image-icon.svg";
 import UploadIcon from "../assets/upload-image-icon.svg";

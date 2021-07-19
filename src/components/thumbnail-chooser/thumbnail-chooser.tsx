@@ -3,61 +3,35 @@ import { ThumbnailWrapper } from "./thumbnail-wrapper";
 import {IThumbnailProps, ThumbnailModelID} from "./thumbnail";
 import NextButtonIcon from "../../assets/arrow-next-icon.svg";
 import PrevButtonIcon from "../../assets/arrow-previous-icon.svg";
-import styled from "styled-components";
+import classNames from "classnames";
+
 import "./thumbnail-chooser.scss";
 interface basicButtonProps {
   onClick?: (e: React.MouseEvent<HTMLElement>) => void;
   enabled: boolean;
 }
 
-const ButtonBack = styled.button`
-  width: 44px;
-  height: 44px;
-  margin: 10px;
-  border-radius: 4px;
-  background-color: var(--white);
-  border: none;
-  opacity: ${props => props.disabled ? 0.35 : 1.0};
-  &:hover{
-    background-color: ${ props => props.disabled
-      ? "var(--white)"
-      : "var(--cc-teal-light-5)"
-    };
-  }
-  &:active {
-    background-color: ${ props => props.disabled
-      ? "var(--white)"
-      : "var(--cc-teal-light-3)"
-    };
-  }
-`;
-
-const ButtonIconContainer = styled.div`
-  width: 24px;
-  height: 24px;
-  margin: 10px 10px 14px;
-  object-fit: contain;
-`;
-
 const PrevButton:React.FC<basicButtonProps> = (props: basicButtonProps) => {
   const {onClick, enabled} = props;
+  const backClasses = classNames("button-back", {disabled: !enabled});
   return(
-    <ButtonBack onClick={onClick} disabled={!enabled}>
-      <ButtonIconContainer>
+    <div className={backClasses} onClick={onClick}>
+      <div className="button-icon-container">
         <PrevButtonIcon/>
-      </ButtonIconContainer>
-    </ButtonBack>
+      </div>
+    </div>
   );
 };
 
 const NextButton:React.FC<basicButtonProps> = (props: basicButtonProps) => {
   const {onClick, enabled} = props;
+  const backClasses = classNames("button-back", {disabled: !enabled});
   return(
-    <ButtonBack onClick={onClick} disabled={!enabled}>
-      <ButtonIconContainer>
+    <div className={backClasses} onClick={onClick}>
+      <div className="button-icon-container">
         <NextButtonIcon/>
-      </ButtonIconContainer>
-    </ButtonBack>
+      </div>
+    </div>
   );
 };
 

@@ -42,5 +42,24 @@
   font-family: Lato;
   font-size: 16px;
   color: var(--cc-charcoal);
+  .container {
+    width: 514px;
+    margin: 0px;
+    display: flex;
+    flex-direction: column;
+    padding: 0px;
+    border: solid 1px var(--cc-charcoal);
+    background-color: var(--white);
+  }
+  .under-sketch {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    width: 100%;
+    .buttons {
+      display: flex;
+      flex-direction: column;
+    }
+  }
 }
 

@@ -6,18 +6,8 @@ import { UploadButton } from "./buttons";
 import { CommentField } from "./comment-field";
 import SnapShotIcon from "../assets/snapshot-image-icon.svg";
 import UploadIcon from "../assets/upload-image-icon.svg";
-import styled from "styled-components";
 import "./app.scss";
 
-const BackgroundDiv = styled.div `
-  width: 514px;
-  margin: 0px;
-  display: flex;
-  flex-direction: column;
-  padding: 0px;
-  border: solid 1px var(--cc-charcoal);
-  background-color: var(--white);
-`;
 
 const initialItems:Array<IThumbnailProps> = [
   {
@@ -147,25 +137,14 @@ export const App = () => {
 
   const selectedItem = items.find(i => i.id === selectedItemID);
 
-  const Buttons = styled.div`
-    display: flex;
-    flex-direction: column;
-  `;
-
-  const BottomContent = styled.div`
-    display: flex;
-    flex-direction: row;
-    align-items: stretch;
-    width: 100%;
-  `;
 
   return (
     <div className="app">
-      <BackgroundDiv>
+      <div className="container">
         <ThumbnailChooser {...thumbnailChooserProps} />
         <PreviewPanel item={selectedItem} />
-        <BottomContent>
-          <Buttons>
+        <div className="under-sketch">
+          <div className="buttons">
             <UploadButton>
               <UploadIcon />
               Upload Image
@@ -175,11 +154,10 @@ export const App = () => {
               <SnapShotIcon />
               Take Snapshot
             </UploadButton>
-          </Buttons>
+          </div>
           <CommentField item={selectedItem}/>
-        </BottomContent>
-
-      </BackgroundDiv>
+        </div>
+      </div>
     </div>
   );
 };
